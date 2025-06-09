@@ -1,10 +1,13 @@
-PROGZ = hello fahr_while fahr_for define
-GCCIT = $(CC) -o $@.out $@.c
-
-all: $(PROGZ)
+all: hello.out fahr_while.out fahr_for.out
 
 clean:
-	$(RM) $(PROGZ)
+	$(RM) *.out
 
-$(PROGZ):
-	$(GCCIT)
+hello.out: hello.c
+	$(CC) -o $@ $(basename $@).c
+
+fahr_while.out: fahr_while.c
+	$(CC) -o $@ $(basename $@).c
+
+fahr_for.out: fahr_for.c
+	$(CC) -o $@ $(basename $@).c
