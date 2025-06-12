@@ -1,13 +1,14 @@
-all: hello.out fahr_while.out fahr_for.out
+PROGZ = hello fahr_while fahr_for define
+
+$(PROGZ): $(foreach p,$(PROGZ),$p.o)
+
+# these are builtin of course in more sophisticated fashion
+%.o: %.c
+	$(CC) -c $<
+
+%: %.o
+	$(CC) -o $@ $<
 
 clean:
-	$(RM) *.out
-
-hello.out: hello.c
-	$(CC) -o $@ $(basename $@).c
-
-fahr_while.out: fahr_while.c
-	$(CC) -o $@ $(basename $@).c
-
-fahr_for.out: fahr_for.c
-	$(CC) -o $@ $(basename $@).c
+	$(RM) *.o
+	$(RM) $(PROGZ)
