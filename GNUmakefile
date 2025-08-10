@@ -1,26 +1,25 @@
-all: hello.out fahr_while.out fahr_for.out define.out file_copying.out character_count_while.out character_count_for.out
+EVERYTHING = hello fahr_while fahr_for define
+
+all: $(EVERYTHING)
 
 clean:
-	$(RM) *.out
+	$(RM) $(EVERYTHING) *.o
+.PHONY: clean
 
-hello.out: hello.c
-	$(CC) -o $@ $(basename $@).c
+hello.o: lib.o
+hello: hello.o lib.o
 
-fahr_while.out: fahr_while.c
-	$(CC) -o $@ $(basename $@).c
+fahr_for: fahr_for.o
 
-fahr_for.out: fahr_for.c
-	$(CC) -o $@ $(basename $@).c
+fahr_while: fahr_while.o
 
-define.out: define.c
-	$(CC) -o $@ $(basename $@).c
+define: define.o
 
-file_copying.out: file_copying.c
-	$(CC) -o $@ $(basename $@).c
+# %: %.o
+# 	$(CC) -o $@ $^
 
-character_count_while.out: character_count_while.c
-	$(CC) -o $@ $(basename $@).c
+# hello: hello.o
+# 	$(CC) -o $@ $<
 
-character_count_for.out: character_count_for.c
-	$(CC) -o $@ $(basename $@).c
-
+# fahr_while: fahr_while.o
+# 	$(CC) -o $@ $<

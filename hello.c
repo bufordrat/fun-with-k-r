@@ -1,7 +1,9 @@
 #include <stdio.h>
 
+extern int y;
+
 int main()
 {
   printf("hello world\n");
-  return 0;
+  return y;
 }
